@@ -1,30 +1,55 @@
-Source: linux-boneblack
+Source: linux-multi-v7
 Section: kernel
 Priority: extra
 Maintainer: Bill Gatliff <bgat@billgatliff.com>
 Build-Depends: debhelper (>= 7.0.50~), module-init-tools
 Standards-Version: 3.9.4
 
-Package: linux-boneblack
+Package: linux-multi-v7
 Architecture: armhf armel
 Depends: ${misc:Depends}
+Description: Linux kernel and modules for ARMV7 targets
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-multi-v7
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Firmware for ARMV7 targets
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-boneblack
+Architecture: armhf armel
+Depends: ${misc:Depends} linux-multi-v7
 Description: Linux kernel and modules for the Beaglebone Black
- The Linux kernel and modules for the Beaglebone Black
- .
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-boneblack
 Architecture: armhf armel
-Depends: ${misc:Depends}
+Depends: ${misc:Depends} firmware-multi-v7
 Description: Firmware blobs for the Beaglebone Black
- The Linux kernel's firmware blobs for the Beaglebone Black target.
- Contains both the firmware the board itself needs to provide base
- functionality (if any), plus blobs for devices that can be added to
- the board by the end user.
- .
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: dtb-boneblack
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Beaglebone Black
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-bonewhite
+Architecture: armhf armel
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for the Beaglebone White
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-bonewhite
+Architecture: armhf armel
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for the Beaglebone Black
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-bonewhite
 Architecture: armhf armel
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beaglebone Black
