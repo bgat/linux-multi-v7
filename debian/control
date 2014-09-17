@@ -1,12 +1,31 @@
-Source: linux-multi-v7
-Section: unknown
+Source: linux-boneblack
+Section: kernel
 Priority: extra
-Maintainer: Bill Gatliff <bgat@ptuxvm.billgatliff.com>
-Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 3.9.3
+Maintainer: Bill Gatliff <bgat@billgatliff.com>
+Build-Depends: debhelper (>= 7.0.50~), module-init-tools
+Standards-Version: 3.9.4
 
-Package: linux-multi-v7
-Architecture: all
+Package: linux-boneblack
+Architecture: armhf armel
 Depends: ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: Linux kernel and modules for the Beaglebone Black
+ The Linux kernel and modules for the Beaglebone Black
+ .
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-boneblack
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Firmware blobs for the Beaglebone Black
+ The Linux kernel's firmware blobs for the Beaglebone Black target.
+ Contains both the firmware the board itself needs to provide base
+ functionality (if any), plus blobs for devices that can be added to
+ the board by the end user.
+ .
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-boneblack
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Beaglebone Black
+ This package is a part of Pragmatux (http://pragmatux.org).
