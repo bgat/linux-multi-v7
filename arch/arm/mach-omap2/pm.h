@@ -15,10 +15,27 @@
 
 #include "powerdomain.h"
 
+#ifdef CONFIG_PM_DEBUG
+extern u32 wakeup_timer_seconds;
+extern u32 wakeup_timer_milliseconds;
+#endif
+
 #ifdef CONFIG_CPU_IDLE
+int am33xx_idle_init(bool ddr3);
+int am437x_idle_init(void);
 extern int __init omap3_idle_init(void);
 extern int __init omap4_idle_init(void);
 #else
+static inline int am33xx_idle_init(bool ddr3)
+{
+	return 0;
+}
+
+static inline int am437x_idle_init(void)
+{
+	return 0;
+}
+
 static inline int omap3_idle_init(void)
 {
 	return 0;
@@ -32,19 +49,35 @@ static inline int omap4_idle_init(void)
 
 extern void *omap3_secure_ram_storage;
 extern void omap3_pm_off_mode_enable(int);
+extern void am33xx_enable_rtc_only_mode(int);
+extern int am33xx_get_rtc_only_mode(void);
 extern void omap_sram_idle(void);
 extern int omap_pm_clkdms_setup(struct clockdomain *clkdm, void *unused);
-extern int (*omap_pm_suspend)(void);
 
 #if defined(CONFIG_PM_OPP)
 extern int omap3_opp_init(void);
 extern int omap4_opp_init(void);
+extern int am33xx_opp_init(void);
+extern int am43xx_opp_init(void);
+extern int dra7xx_opp_init(void);
 #else
 static inline int omap3_opp_init(void)
 {
 	return -EINVAL;
 }
 static inline int omap4_opp_init(void)
+{
+	return -EINVAL;
+}
+static inline int am33xx_opp_init(void)
+{
+	return -EINVAL;
+}
+static inline int am43xx_opp_init(void)
+{
+	return -EINVAL;
+}
+static inline int dra7xx_opp_init(void)
 {
 	return -EINVAL;
 }
@@ -82,6 +115,16 @@ extern unsigned int omap3_do_wfi_sz;
 /* ... and its pointer from SRAM after copy */
 extern void (*omap3_do_wfi_sram)(void);
 
+/* am33xx_do_wfi function pointer and size, for copy to SRAM */
+void am33xx_do_wfi(void);
+extern unsigned int am33xx_do_wfi_sz;
+extern unsigned int am33xx_resume_offset;
+
+/* am43xx_do_wfi function pointer and size, for copy to SRAM */
+void am43xx_do_wfi(void);
+extern unsigned int am43xx_do_wfi_sz;
+extern unsigned int am43xx_resume_offset;
+
 /* save_secure_ram_context function pointer and size, for copy to SRAM */
 extern int save_secure_ram_context(u32 *addr);
 extern unsigned int save_secure_ram_context_sz;
@@ -103,7 +146,7 @@ static inline void enable_omap3630_toggle_l2_on_restore(void) { }
 
 #define PM_OMAP4_ROM_SMP_BOOT_ERRATUM_GICD	(1 << 0)
 
-#if defined(CONFIG_ARCH_OMAP4)
+#if defined(CONFIG_PM) && defined(CONFIG_ARCH_OMAP4)
 extern u16 pm44xx_errata;
 #define IS_PM44XX_ERRATUM(id)		(pm44xx_errata & (id))
 #else
@@ -147,4 +190,11 @@ static inline void omap_pm_get_oscillator(u32 *tstart, u32 *tshut) { *tstart = *
 static inline void omap_pm_setup_sr_i2c_pcb_length(u32 mm) { }
 #endif
 
+#ifdef CONFIG_SUSPEND
+void omap_common_suspend_init(void *pm_suspend);
+#else
+static inline void omap_common_suspend_init(void *pm_suspend)
+{
+}
+#endif /* CONFIG_SUSPEND */
 #endif
