@@ -54,3 +54,41 @@ Architecture: armhf armel
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beaglebone Black
  This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-beaglexm
+Architecture: armhf armel
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for the Beagleboard XM
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-beaglexm
+Architecture: armhf armel
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for the Beagleboard XM
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-beaglexm
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Beagleboard XM
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-beagleboard
+Architecture: armhf armel
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for Beagleboard C/D
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-beagleboard
+Architecture: armhf armel
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for Beagleboard C/D
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-beagleboard
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Beagleboard C/D
+ This package is a part of Pragmatux (http://pragmatux.org).

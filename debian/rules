@@ -14,6 +14,10 @@ DTB_BONEBLACK=arch/arm/boot/dts/am335x-boneblack.dtb
 DESTDIR_DTB_BONEBLACK=debian/dtb-boneblack
 DTB_BONEWHITE=arch/arm/boot/dts/am335x-bone.dtb
 DESTDIR_DTB_BONEWHITE=debian/dtb-bonewhite
+DTB_BEAGLEXM=arch/arm/boot/dts/omap3-beagle-xm.dts
+DESTDIR_DTB_BEAGLEXM=debian/dtb-beaglexm
+DTB_BEAGLEBOARD=arch/arm/boot/dts/omap3-beagle.dts
+DESTDIR_DTB_BEAGLEBOARD=debian/dtb-beagleboard
 
 KERNELRELEASE=$(shell cut -f 2 -d '"' $(CURDIR)/include/generated/utsrelease.h | cut -f 1 -d '"')
 
@@ -42,6 +46,10 @@ override_dh_auto_install:
 	cp $(DTB_BONEBLACK) $(DESTDIR_DTB_BONEBLACK)/boot/dtb
 	mkdir -p $(DESTDIR_DTB_BONEWHITE)/boot
 	cp $(DTB_BONEWHITE) $(DESTDIR_DTB_BONEWHITE)/boot/dtb
+	mkdir -p $(DESTDIR_DTB_BEAGLEXM)/boot
+	cp $(DTB_BEAGLEXM) $(DESTDIR_DTB_BEAGLEXM)/boot/dtb
+	mkdir -p $(DESTDIR_DTB_BEAGLEBOARD)/boot
+	cp $(DTB_BEAGLEBOARD) $(DESTDIR_DTB_BEAGLEBOARD)/boot/dtb
 
 override_dh_auto_configure:
 override_dh_auto_test:
