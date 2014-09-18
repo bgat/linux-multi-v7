@@ -92,3 +92,41 @@ Architecture: armhf armel
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beagleboard C/D
  This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-overo
+Architecture: armhf armel
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for Gumstix Overo
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-overo
+Architecture: armhf armel
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for Gumstix Overo
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-overo
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Gumstix Overo
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-overostorm
+Architecture: armhf armel
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for Gumstix Overo Storm
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-overostorm
+Architecture: armhf armel
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for Gumstix Overo Storm
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-overostorm
+Architecture: armhf armel
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Gumstix Overo Storm
+ This package is a part of Pragmatux (http://pragmatux.org).
