@@ -41,7 +41,7 @@ override_dh_auto_install:
 	mkdir -p $(DESTDIR_DTB_BONEBLACK)/boot
 	cp $(DTB_BONEBLACK) $(DESTDIR_DTB_BONEBLACK)/boot/dtb
 	mkdir -p $(DESTDIR_DTB_BONEWHITE)/boot
-	cp $(DTB_BONEBLACK) $(DESTDIR_DTB_BONEWHITE)/boot/dtb
+	cp $(DTB_BONEWHITE) $(DESTDIR_DTB_BONEWHITE)/boot/dtb
 
 override_dh_auto_configure:
 override_dh_auto_test:
