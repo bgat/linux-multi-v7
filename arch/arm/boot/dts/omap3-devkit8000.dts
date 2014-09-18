@@ -101,8 +101,20 @@
 	status = "disabled";
 };
 
-&mcbsp2 {
-	status = "okay";
+&mcbsp1 {
+	status = "disabled";
+};
+
+&mcbsp3 {
+	status = "disabled";
+};
+
+&mcbsp4 {
+	status = "disabled";
+};
+
+&mcbsp5 {
+	status = "disabled";
 };
 
 &gpmc {
