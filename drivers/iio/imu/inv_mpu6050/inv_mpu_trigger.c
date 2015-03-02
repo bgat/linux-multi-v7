@@ -123,12 +123,14 @@ int inv_mpu6050_probe_trigger(struct iio_dev *indio_dev)
 		ret = -ENOMEM;
 		goto error_ret;
 	}
-	ret = request_irq(st->client->irq, &iio_trigger_generic_data_rdy_poll,
-				IRQF_TRIGGER_RISING,
-				"inv_mpu",
-				st->trig);
-	if (ret)
-		goto error_free_trig;
+	if (st->client->irq) {
+		ret = request_irq(st->client->irq, &iio_trigger_generic_data_rdy_poll,
+				  IRQF_TRIGGER_RISING,
+				  "inv_mpu",
+				  st->trig);
+		if (ret)
+			goto error_free_trig;
+	}
 	st->trig->dev.parent = &st->client->dev;
 	st->trig->ops = &inv_mpu_trigger_ops;
 	iio_trigger_set_drvdata(st->trig, indio_dev);
@@ -140,7 +142,8 @@ int inv_mpu6050_probe_trigger(struct iio_dev *indio_dev)
 	return 0;
 
 error_free_irq:
-	free_irq(st->client->irq, st->trig);
+	if (st->client->irq)
+		free_irq(st->client->irq, st->trig);
 error_free_trig:
 	iio_trigger_free(st->trig);
 error_ret:
@@ -150,6 +153,7 @@ error_ret:
 void inv_mpu6050_remove_trigger(struct inv_mpu6050_state *st)
 {
 	iio_trigger_unregister(st->trig);
-	free_irq(st->client->irq, st->trig);
+	if (st->client->irq)
+		free_irq(st->client->irq, st->trig);
 	iio_trigger_free(st->trig);
 }
