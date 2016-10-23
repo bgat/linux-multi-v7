@@ -12,7 +12,7 @@ JOBS=$(shell expr 2 \* $(shell cat /proc/cpuinfo | grep processor | wc -l))
 KARGS=ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -j$(JOBS) V=1 KCONFIG_CONFIG=./config
 DESTDIR=debian/linux-multi-v7
 DESTDIR_FW=debian/firmware-multi-v7
-DESTDIR_HDR=debian/linux-headers-multi-v7
+DESTDIR_HDR=debian/linux-headers-multi-v7/usr/src/linux-multi-v7
 
 # TODO: as we add more targets, this is going to get cumbersome...
 DTB_BONEBLACK=arch/arm/boot/dts/am335x-boneblack.dtb
