@@ -4,6 +4,10 @@ export DH_VERBOSE=1
 ARCH=$(DEB_HOST_GNU_CPU)
 CROSS_COMPILE=$(DEB_HOST_GNU_TYPE)-
 
+# TODO: automate the debian/control file's version number too
+# TODO: and/or confirm that the two versions match
+KVER=$(shell $(MAKE) -s kernelversion)
+
 JOBS=$(shell expr 2 \* $(shell cat /proc/cpuinfo | grep processor | wc -l))
 KARGS=ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -j$(JOBS) V=1 KCONFIG_CONFIG=./config
 DESTDIR=debian/linux-multi-v7
@@ -38,14 +42,33 @@ override_dh_auto_build:
 	$(MAKE) $(KARGS) modules
 	$(MAKE) $(KARGS) dtbs
 
-override_dh_auto_install:
+override_dh_auto_install: _do_kernel_install _do_modules_install _do_fw_install _do_dtb_install _do_hdr_install
+
+override_dh_strip:
+override_dh_auto_configure:
+override_dh_auto_test:
+	true # pass
+
+
+
+.PHONY: _do_kernel_install
+_do_kernel_install:
 	mkdir -p $(DESTDIR)/boot
 	cp arch/arm/boot/zImage $(DESTDIR)/boot
 	cp System.map $(DESTDIR)/boot/System.map-$(KERNELRELEASE)
 	gzip --stdout config > $(DESTDIR)/boot/config.gz
+
+.PHONY: _do_modules_install
+_do_modules_install:
 	$(MAKE) $(KARGS) INSTALL_MOD_PATH=$(DESTDIR) modules_install
 	rm -f $(DESTDIR)/lib/modules/*/build $(DESTDIR)/lib/modules/*/source
+
+.PHONY: _do_fw_install
+_do_fw_install:
 	$(MAKE) $(KARGS) INSTALL_FW_PATH=$(DESTDIR_FW)/lib/firmware firmware_install
+
+.PHONY: _do_dtb_install
+_do_dtb_install:
 	mkdir -p $(DESTDIR_DTB_BONEBLACK)/boot
 	cp $(DTB_BONEBLACK) $(DESTDIR_DTB_BONEBLACK)/boot/dtb
 	mkdir -p $(DESTDIR_DTB_BONEWHITE)/boot
@@ -59,7 +82,13 @@ override_dh_auto_install:
 	mkdir -p $(DESTDIR_DTB_OVEROSTORM)/boot
 	cp $(DTB_OVEROSTORM) $(DESTDIR_DTB_OVEROSTORM)/boot/dtb
 
-override_dh_auto_configure:
-override_dh_auto_test:
-	true # pass
+.PHONY: _do_hdr_install
+_do_hdr_install:
+	mkdir -p $(DESTDIR_HDR)
+	tar c include  | tar x -C $(DESTDIR_HDR)
+	tar c arch/arm/include arch/arm/kernel/asm-offsets.s | tar x -C $(DESTDIR_HDR)
+	tar c arch/arm/{mach-omap2,plat-omap}/include | tar x -C $(DESTDIR_HDR)
+	tar c config scripts Kbuild Makefile Module.symvers System.map | tar x -C $(DESTDIR_HDR)
+	tar c $(shell find arch/arm/ -name Makefile -print) | tar x -C $(DESTDIR_HDR)
+	ln -s config $(DESTDIR_HDR)/.config
 

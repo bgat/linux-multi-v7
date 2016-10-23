@@ -11,6 +11,13 @@ Depends: ${misc:Depends}
 Description: Linux kernel and modules for ARMV7 targets
  This package is a part of Pragmatux (http://pragmatux.org).
 
+Package: linux-headers-multi-v7
+Provides: linux-headers-boneblack
+Architecture: all
+Depends: ${misc:Depends}
+Description: Kernel headers for out-of-tree builds
+ This package is a part of Pragmatux (http://pragmatux.org).
+
 Package: firmware-multi-v7
 Architecture: armhf armel
 Depends: ${misc:Depends}
