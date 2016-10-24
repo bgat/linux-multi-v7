@@ -1,0 +1,95 @@
+#!/usr/bin/make -f
+export DH_VERBOSE=1
+
+ARCH=$(DEB_HOST_GNU_CPU)
+CROSS_COMPILE=$(DEB_HOST_GNU_TYPE)-
+
+# TODO: automate the debian/control file's version number too
+# TODO: and/or confirm that the two versions match
+KVER=$(shell $(MAKE) -s kernelversion)
+
+JOBS=$(shell expr 2 \* $(shell cat /proc/cpuinfo | grep processor | wc -l))
+KARGS=ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -j$(JOBS) V=1 KCONFIG_CONFIG=./config
+DESTDIR=debian/linux-multi-v7
+DESTDIR_FW=debian/firmware-multi-v7
+DESTDIR_HDR=debian/linux-headers-multi-v7/usr/src/linux-multi-v7
+
+# TODO: as we add more targets, this is going to get cumbersome...
+DTB_BONEBLACK=arch/arm/boot/dts/am335x-boneblack.dtb
+DESTDIR_DTB_BONEBLACK=debian/dtb-boneblack
+DTB_BONEWHITE=arch/arm/boot/dts/am335x-bone.dtb
+DESTDIR_DTB_BONEWHITE=debian/dtb-bonewhite
+DTB_BEAGLEXM=arch/arm/boot/dts/omap3-beagle-xm.dtb
+DESTDIR_DTB_BEAGLEXM=debian/dtb-beaglexm
+DTB_BEAGLEBOARD=arch/arm/boot/dts/omap3-beagle.dtb
+DESTDIR_DTB_BEAGLEBOARD=debian/dtb-beagleboard
+DTB_OVEROSTORM=arch/arm/boot/dts/omap3-overo-storm-tobi.dtb
+DESTDIR_DTB_OVEROSTORM=debian/dtb-overostorm
+DTB_OVERO=arch/arm/boot/dts/omap3-overo-tobi.dtb
+DESTDIR_DTB_OVERO=debian/dtb-overo
+
+KERNELRELEASE=$(shell cut -f 2 -d '"' $(CURDIR)/include/generated/utsrelease.h | cut -f 1 -d '"')
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	$(MAKE) $(KARGS) distclean
+	rm -rf $(DESTDIR) $(DESTDIR_FW)
+
+override_dh_auto_build:
+	$(MAKE) $(KARGS) olddefconfig
+	$(MAKE) $(KARGS) zImage
+	$(MAKE) $(KARGS) modules
+	$(MAKE) $(KARGS) dtbs
+
+override_dh_auto_install: _do_kernel_install _do_modules_install _do_fw_install _do_dtb_install _do_hdr_install
+
+override_dh_strip:
+override_dh_auto_configure:
+override_dh_auto_test:
+	true # pass
+
+
+
+.PHONY: _do_kernel_install
+_do_kernel_install:
+	mkdir -p $(DESTDIR)/boot
+	cp arch/arm/boot/zImage $(DESTDIR)/boot
+	cp System.map $(DESTDIR)/boot/System.map-$(KERNELRELEASE)
+	gzip --stdout config > $(DESTDIR)/boot/config.gz
+
+.PHONY: _do_modules_install
+_do_modules_install:
+	$(MAKE) $(KARGS) INSTALL_MOD_PATH=$(DESTDIR) modules_install
+	rm -f $(DESTDIR)/lib/modules/*/build $(DESTDIR)/lib/modules/*/source
+
+.PHONY: _do_fw_install
+_do_fw_install:
+	$(MAKE) $(KARGS) INSTALL_FW_PATH=$(DESTDIR_FW)/lib/firmware firmware_install
+
+.PHONY: _do_dtb_install
+_do_dtb_install:
+	mkdir -p $(DESTDIR_DTB_BONEBLACK)/boot
+	cp $(DTB_BONEBLACK) $(DESTDIR_DTB_BONEBLACK)/boot/dtb
+	mkdir -p $(DESTDIR_DTB_BONEWHITE)/boot
+	-cp $(DTB_BONEWHITE) $(DESTDIR_DTB_BONEWHITE)/boot/dtb
+	mkdir -p $(DESTDIR_DTB_BEAGLEXM)/boot
+	-cp $(DTB_BEAGLEXM) $(DESTDIR_DTB_BEAGLEXM)/boot/dtb
+	mkdir -p $(DESTDIR_DTB_BEAGLEBOARD)/boot
+	-cp $(DTB_BEAGLEBOARD) $(DESTDIR_DTB_BEAGLEBOARD)/boot/dtb
+	mkdir -p $(DESTDIR_DTB_OVERO)/boot
+	-cp $(DTB_OVERO) $(DESTDIR_DTB_OVERO)/boot/dtb
+	mkdir -p $(DESTDIR_DTB_OVEROSTORM)/boot
+	-cp $(DTB_OVEROSTORM) $(DESTDIR_DTB_OVEROSTORM)/boot/dtb
+
+.PHONY: _do_hdr_install
+_do_hdr_install:
+	mkdir -p $(DESTDIR_HDR)
+	tar c include  | tar x -C $(DESTDIR_HDR)
+	tar c arch/arm/include arch/arm/kernel/asm-offsets.s | tar x -C $(DESTDIR_HDR)
+	tar c arch/arm/{mach-omap2,plat-omap}/include | tar x -C $(DESTDIR_HDR)
+	tar c config scripts Kbuild Makefile Module.symvers System.map | tar x -C $(DESTDIR_HDR)
+	tar c $(shell find arch/arm/ -name Makefile -print) | tar x -C $(DESTDIR_HDR)
+	ln -s config $(DESTDIR_HDR)/.config
+
