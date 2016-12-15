@@ -467,12 +467,18 @@ dtb-$(CONFIG_SOC_AM33XX) += \
 	am335x-base0033.dtb \
 	am335x-bone.dtb \
 	am335x-boneblack.dtb \
+	am335x-bonegreen-modio.dtb \
+	am335x-boneblack-modio.dtb \
+	am335x-siriusDEB.dtb \
 	am57xx-beagle-x15-revb1-ctag.dtb \
 	am335x-boneblack-lcd-ct43.dtb \
 	am335x-vsc8531bbb.dtb \
 	am335x-bonegreen-ctag-face.dtb \
 	am335x-boneblack-ctag-face.dtb \
 	am335x-sancloud-bbe.dtb \
+	am335x-boneblack-wireless-roboticscape.dtb \
+	am335x-boneblack-roboticscape.dtb \
+	am335x-boneblue.dtb \
 	am335x-boneblack-audio.dtb \
 	am335x-boneblack-bbb-exp-r.dtb \
 	am335x-boneblack-bbb-exp-c.dtb \
@@ -486,7 +492,6 @@ dtb-$(CONFIG_SOC_AM33XX) += \
 	am335x-bonegreen-wireless.dtb \
 	am335x-olimex-som.dtb \
 	am335x-abbbi.dtb \
-	am335x-boneblue.dtb \
 	am335x-bonegreen-overlay.dtb \
 	am335x-boneblack-overlay.dtb \
 	am335x-boneblack-nhdmi-overlay.dtb \

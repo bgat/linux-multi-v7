@@ -250,6 +250,9 @@
 		reg = <0x20>;
 		gpio-controller;
 		#gpio-cells = <2>;
+
+		interrupt-controller;
+		#interrupt-cells = <2>;
 	};
 
 	pcf_gpio_21: gpio@21 {
@@ -703,4 +706,8 @@
 	mboxes = <&mailbox5 &mbox_dsp1_ipc3x>;
 	timers = <&timer5>;
 	watchdog-timers = <&timer10>;
+};
+
+&pcie1_rc {
+	status = "okay";
 };

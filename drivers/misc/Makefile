@@ -62,3 +62,4 @@ obj-$(CONFIG_CXL_BASE)		+= cxl/
 obj-$(CONFIG_TIEQEP)		+= tieqep.o
 obj-$(CONFIG_BONE_CAPEMGR)	+= bone_capemgr.o
 obj-$(CONFIG_DEV_OVERLAYMGR)	+= devovmgr.o
+obj-$(CONFIG_PCI_ENDPOINT_TEST)	+= pci_endpoint_test.o
