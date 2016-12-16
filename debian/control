@@ -4,6 +4,7 @@ Priority: extra
 Maintainer: Bill Gatliff <bgat@billgatliff.com>
 Build-Depends: debhelper (>= 7.0.50~), module-init-tools
 Standards-Version: 3.9.4
+Vcs-Git: https://github.com/bgat/linux-multi-v7.git
 
 Package: linux-multi-v7
 Architecture: armhf armel
