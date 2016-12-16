@@ -7,6 +7,7 @@ Standards-Version: 3.9.4
 
 Package: linux-multi-v7
 Architecture: armhf armel
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Linux kernel and modules for ARMV7 targets
  This package is a part of Pragmatux (http://pragmatux.org).
@@ -14,12 +15,14 @@ Description: Linux kernel and modules for ARMV7 targets
 Package: linux-headers-multi-v7
 Provides: linux-headers-boneblack
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Kernel headers for out-of-tree builds
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-multi-v7
-Architecture: armhf armel
+Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Firmware for ARMV7 targets
  This package is a part of Pragmatux (http://pragmatux.org).
@@ -27,18 +30,21 @@ Description: Firmware for ARMV7 targets
 
 Package: linux-boneblack
 Architecture: armhf armel
+Multi-Arch: foreign
 Depends: ${misc:Depends} linux-multi-v7
 Description: Linux kernel and modules for the Beaglebone Black
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-boneblack
-Architecture: armhf armel
+Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends} firmware-multi-v7
 Description: Firmware blobs for the Beaglebone Black
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: dtb-boneblack
-Architecture: armhf armel
+Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beaglebone Black
  This package is a part of Pragmatux (http://pragmatux.org).
@@ -46,18 +52,21 @@ Description: Generic Device Tree Blob for Beaglebone Black
 
 Package: linux-bonewhite
 Architecture: armhf armel
+Multi-Arch: foreign
 Depends: ${misc:Depends} linux-multi-v7
 Description: Linux kernel and modules for the Beaglebone White
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-bonewhite
-Architecture: armhf armel
+Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends} firmware-multi-v7
 Description: Firmware blobs for the Beaglebone Black
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: dtb-bonewhite
-Architecture: armhf armel
+Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beaglebone Black
  This package is a part of Pragmatux (http://pragmatux.org).
@@ -65,18 +74,21 @@ Description: Generic Device Tree Blob for Beaglebone Black
 
 Package: linux-beaglexm
 Architecture: armhf armel
+Multi-Arch: foreign
 Depends: ${misc:Depends} linux-multi-v7
 Description: Linux kernel and modules for the Beagleboard XM
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-beaglexm
-Architecture: armhf armel
+Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends} firmware-multi-v7
 Description: Firmware blobs for the Beagleboard XM
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: dtb-beaglexm
-Architecture: armhf armel
+Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beagleboard XM
  This package is a part of Pragmatux (http://pragmatux.org).
@@ -84,18 +96,21 @@ Description: Generic Device Tree Blob for Beagleboard XM
 
 Package: linux-beagleboard
 Architecture: armhf armel
+Multi-Arch: foreign
 Depends: ${misc:Depends} linux-multi-v7
 Description: Linux kernel and modules for Beagleboard C/D
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-beagleboard
-Architecture: armhf armel
+Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends} firmware-multi-v7
 Description: Firmware blobs for Beagleboard C/D
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: dtb-beagleboard
-Architecture: armhf armel
+Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beagleboard C/D
  This package is a part of Pragmatux (http://pragmatux.org).
@@ -103,18 +118,21 @@ Description: Generic Device Tree Blob for Beagleboard C/D
 
 Package: linux-overo
 Architecture: armhf armel
+Multi-Arch: foreign
 Depends: ${misc:Depends} linux-multi-v7
 Description: Linux kernel and modules for Gumstix Overo
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-overo
-Architecture: armhf armel
+Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends} firmware-multi-v7
 Description: Firmware blobs for Gumstix Overo
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: dtb-overo
-Architecture: armhf armel
+Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Gumstix Overo
  This package is a part of Pragmatux (http://pragmatux.org).
@@ -127,13 +145,15 @@ Description: Linux kernel and modules for Gumstix Overo Storm
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: firmware-overostorm
-Architecture: armhf armel
+Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends} firmware-multi-v7
 Description: Firmware blobs for Gumstix Overo Storm
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: dtb-overostorm
-Architecture: armhf armel
+Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Gumstix Overo Storm
  This package is a part of Pragmatux (http://pragmatux.org).
