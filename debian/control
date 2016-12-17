@@ -14,7 +14,16 @@ Description: Linux kernel and modules for ARMV7 targets
  This package is a part of Pragmatux (http://pragmatux.org).
 
 Package: linux-headers-multi-v7
-Provides: linux-headers-boneblack
+Provides:
+ linux-headers-boneblack,
+ linux-headers-bonewhite,
+ linux-headers-bonegreen,
+ linux-headers-boneblackwireless,
+ linux-headers-bonewhitewireless,
+ linux-headers-beaglexm,
+ linux-headers-beagleboard,
+ linux-headers-overo,
+ linux-headers-overostorm,
 Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}
@@ -70,6 +79,72 @@ Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Generic Device Tree Blob for Beaglebone Black
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-bonegreen
+Architecture: armhf armel
+Multi-Arch: foreign
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for the Beaglebone Green
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-bonegreen
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for the Beaglebone Green
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-bonegreen
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Beaglebone Green
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-bonegreenwireless
+Architecture: armhf armel
+Multi-Arch: foreign
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for Beaglebone Green Wireless
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-bonegreenwireless
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for Beaglebone Green Wireless
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-bonegreenwireless
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Beaglebone Green Wireless
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+
+Package: linux-boneblackwireless
+Architecture: armhf armel
+Multi-Arch: foreign
+Depends: ${misc:Depends} linux-multi-v7
+Description: Linux kernel and modules for Beaglebone Black Wireless
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: firmware-boneblackwireless
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends} firmware-multi-v7
+Description: Firmware blobs for the Beaglebone Black Wireless
+ This package is a part of Pragmatux (http://pragmatux.org).
+
+Package: dtb-boneblackwireless
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Generic Device Tree Blob for Beaglebone Black Wireless
  This package is a part of Pragmatux (http://pragmatux.org).
 
 

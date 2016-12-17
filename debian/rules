@@ -14,9 +14,12 @@ DESTDIR=debian/linux-multi-v7
 DESTDIR_FW=debian/firmware-multi-v7
 DESTDIR_HDR=debian/linux-headers-multi-v7/usr/src/linux-multi-v7
 
-DEVICES=boneblack bonewhite beaglexm beagleboard overo overostorm
+DEVICES=boneblack bonewhite bonegreen boneblackwireless bonegreenwireless beaglexm beagleboard overo overostorm
 DTB_BONEBLACK=arch/arm/boot/dts/am335x-boneblack.dtb
 DTB_BONEWHITE=arch/arm/boot/dts/am335x-bone.dtb
+DTB_BONEGREEN=arch/arm/boot/dts/am335x-bonegreen.dtb
+DTB_BONEBLACKWIRELESS=arch/arm/boot/dts/am335x-boneblack-wireless.dtb
+DTB_BONEGREENWIRELESS=arch/arm/boot/dts/am335x-bonegreen-wireless.dtb
 DTB_BEAGLEXM=arch/arm/boot/dts/omap3-beagle-xm.dtb
 DTB_BEAGLEBOARD=arch/arm/boot/dts/omap3-beagle.dtb
 DTB_OVEROSTORM=arch/arm/boot/dts/omap3-overo-storm-tobi.dtb
