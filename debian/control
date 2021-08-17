@@ -2,8 +2,8 @@ Source: linux-multi-v7
 Section: kernel
 Priority: extra
 Maintainer: Bill Gatliff <bgat@billgatliff.com>
-Build-Depends: debhelper (>= 7.0.50~), module-init-tools
-Standards-Version: 3.9.4
+Build-Depends: debhelper (>= 13), kmod
+Standards-Version: 4.5.1
 Vcs-Git: https://github.com/bgat/linux-multi-v7.git
 
 Package: linux-multi-v7
